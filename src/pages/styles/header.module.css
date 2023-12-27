@@ -1,0 +1,38 @@
+.header {
+    padding-bottom: 100px;
+}
+
+.wrapper {
+    background-color: #ee352a;
+}
+
+
+.inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    gap:50px;
+}
+
+.link {
+    color: #fcf9c4;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.arrow {
+    fill: #ee352a;
+    width: 3.75em;
+    height: 1em;
+    background: transparent url(https://www.brandaiddesignco.com/img/global/bg-arrow.svg) no-repeat center top;
+    background-image: -webkit-linear-gradient(transparent, transparent), url(https://www.brandaiddesignco.com/img/global/bg-arrow.svg);
+    background-image: linear-gradient(transparent, transparent), url(https://www.brandaiddesignco.com/img/global/bg-arrow.svg);
+    margin: 0 auto -1em;
+    position: relative;
+}
