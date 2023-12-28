@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import styles from "./styles/auth.module.css"
 
@@ -16,17 +19,21 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8000/api/login/', formData);
+            const response = await axios.post('http://192.168.0.102:8000/api/login/', formData);
             console.log('Пользователь успешно авторизован:', response.data);
+            toast.success('Пользователь успешно авторизован', {
+                onClose: () => {
+                    window.location.href = '/brands';
+                },
+            });
         } catch (error) {
             console.error('Ошибка входа:', error.response.data);
+            toast.error('Ошибка входа: ' + error.response.data.message);
         }
     };
 
     return (
-        
-
-
+    
         <main className={styles.main} style={{ backgroundImage: `url(https://images.unsplash.com/photo-1567777176186-dfa735f1fe20?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)` }}>
         <section className={styles.inner}>
             <article className={styles["image-holder"]}>

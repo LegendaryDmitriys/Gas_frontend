@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import styles from "./styles/import.module.css"
+
+
 const ImportData = () => {
   const [file, setFile] = useState(null);
   const [tableName, setTableName] = useState("");
@@ -32,16 +35,16 @@ const ImportData = () => {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      <select value={tableName} onChange={handleTableChange}>
+    <div className={styles.div}>
+      <input type="file" onChange={handleFileChange} className={styles.input}/>
+      <select value={tableName} onChange={handleTableChange} className={styles.select}>
         <option value="">Выберите таблицу</option>
         <option value="brands">Brands</option>
         <option value="cars">Cars</option>
         <option value="customers">customers</option>
         <option value="fuelcolumns"> fuelcolumns</option>
       </select>
-      <button onClick={handleImport}>Импорт</button>
+      <button onClick={handleImport} className={styles.btn}>Импорт</button>
     </div>
   );
 };

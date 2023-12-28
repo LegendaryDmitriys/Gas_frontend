@@ -122,8 +122,9 @@ const Fuelings = () => {
   };
 
   return (
-    <main>
-        <Header/>
+    <>
+    <Header/>
+    <main className={styles.main}>
       <section className={styles.blocks}>
         <article className={styles.fuelings}>
           {fuelings.map((fueling) => (
@@ -150,6 +151,7 @@ const Fuelings = () => {
         </article>
       </section>
     </main>
+    </>
   );
 };
 

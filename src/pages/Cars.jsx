@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import styles from "./styles/cars.module.css";
+import sprite from "../images/sprite.svg"
+
+
 import Header from "./components/Header";
+
+import { splitLicensePlateNumber } from "../utils/utils";
 
 const Car = () => {
     const [cars, setCars] = useState([]);
@@ -48,7 +53,15 @@ const Car = () => {
                 <article className={styles.cars}>
                     {searchedCars.map((car) => (
                         <article className={styles.block} key={car.id}>
-                            <img src={car.image} alt={car.model} className={styles.image} />
+                            {car.image ? (
+                                <img src={car.image} alt={car.model} className={styles.image} />
+                            ) : (
+                                <img
+                                    src="https://cdn-icons-png.flaticon.com/512/89/89102.png"
+                                    alt="Стандартное изображение"
+                                    className={styles.image}
+                                />
+                            )}
                             <header>
                                 <h2 className={styles.h2}>
                                     Модель <br />
@@ -58,13 +71,26 @@ const Car = () => {
                             <p>Год выпуска : {car.year}</p>
                             <p>Марка : {car.brand.brand_name}</p>
                             <footer>
-                                <p>Регистрационный номер</p>
-                                <span>{car.registration_number}</span>
+                                <h4 className={styles["header-number"]}>Регистрационный номер</h4>
+                                    <section className={styles["license-plate"]}>
+                                        <article className={styles.number}>
+                                            {splitLicensePlateNumber(car.registration_number).map((part, index) => (
+                                                    <span key={index} className={styles.number}>{part}</span>
+                                                ))}
+                                        </article>
+                                        <article>
+                                            <svg className='icon' width={ 46 } height={ 42 }>
+                                                <use xlinkHref={sprite + "#flag"} />
+                                            </svg>
+                                        </article>
+                    
+                                    </section>
+                               
                             </footer>
                         </article>
                     ))}
-                </article>
-                <aside className={styles.panel}>
+                </article> 
+                <aside className={styles.panel}>             
                 <h3 className={styles["header-panel"]}>Фильтры и поиск</h3>
                     <input
                         className={styles.input}
